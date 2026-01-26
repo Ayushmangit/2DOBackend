@@ -38,14 +38,9 @@ export default class AuthController {
   }
 
   async me({ auth }: HttpContext) {
-    await auth.use('api').authenticate()
-    console.log(auth)
-    return {
-      user: {
-        email: auth.user!.email,
-        name: auth.user!.name,
-      },
-    }
+    const user = await auth.use('api').authenticate()
+    return user
+
   }
 
   async logout({ auth }: HttpContext) {
