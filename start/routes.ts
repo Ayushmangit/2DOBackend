@@ -20,6 +20,6 @@ router.group(() => {
 router.group(() => {
   router.get('/', [TodoController, 'index'])
   router.post('/', [TodoController, 'store'])
-  router.post('/:id', [TodoController, 'destroy'])
+  router.delete('/:id', [TodoController, 'destroy'])
 }).prefix("todos/")
   .use(middleware.auth())
