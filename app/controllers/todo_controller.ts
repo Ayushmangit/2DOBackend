@@ -6,7 +6,7 @@ export default class TodoController {
   async index({ auth, response }: HttpContext) {
     const todos = await Todo.query()
       .where('user_id', auth.user!.id)
-      .orderBy('created_at', 'desc')
+      .orderBy('created_at')
     return response.ok(todos)
   }
 
