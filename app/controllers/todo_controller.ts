@@ -42,7 +42,19 @@ export default class TodoController {
 
   // async edit({ params }: HttpContext) { }
 
-  // async update({ params, request }: HttpContext) { }
+  async update({ params, request, auth, response }: HttpContext) {
+    const payload = request.all()
+    const todo = await Todo
+      .query()
+      .where('id', params.id)
+      .where('user_id', auth.user!.id)
+      .firstOrFail()
+
+    todo.merge(payload)
+    await todo.save()
+
+    return response.ok(todo)
+  }
 
   async destroy({ params, response, auth }: HttpContext) {
     const todo = await Todo
