@@ -1,4 +1,3 @@
-
 import AuthController from '#controllers/auth_controller'
 import TodoController from '#controllers/todo_controller'
 import router from '@adonisjs/core/services/router'
@@ -15,6 +14,8 @@ router.group(() => {
   router.post("/login", [AuthController, 'login'])
   router.post("/logout", [AuthController, 'logout'])
   router.get("/me", [AuthController, 'me'])
+  router.post("/forgot-password", [AuthController, 'forgotPassword'])
+  router.post("/reset-password", [AuthController, 'resetPassword'])
 }).prefix("auth/")
 
 router.group(() => {
